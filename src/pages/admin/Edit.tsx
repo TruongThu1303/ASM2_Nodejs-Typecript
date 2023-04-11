@@ -91,8 +91,8 @@ const Edit = () => {
                   <input
                     {...register("images")}
                     id="dropzone-file"
-                    type="file"
-                    className="hidden"
+                    type="text"
+                    className="rounded-lg px-20"
                   />
                   <p className="text-xs text-red-500">
                     {errors.images && errors.images.message}
@@ -173,7 +173,7 @@ const Edit = () => {
                   <select
                     className="w-full p-2 text-sm bg-transparent border-gray-200 rounded-md border-1"
                     {...register("categoryId")}
-                    value={product?.categoryId?._id}
+                    value={product?.categoryId}
                   >
                     {category &&
                       category.map((cate) => (

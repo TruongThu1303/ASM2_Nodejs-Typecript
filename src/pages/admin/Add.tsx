@@ -9,6 +9,7 @@ import { getCategory } from "../../api/category";
 
 const Add = () => {
   const [category, setCategory] = useState<ICategory[]>([]);
+  //  để quản lý routing 
   const navigate = useNavigate();
   const fetchCategory = async () => {
     try {
@@ -18,16 +19,18 @@ const Add = () => {
       console.log(error);
     }
   };
+  //lấy danh sách các danh mục sp từ server qua hàm fetchCategory
   useEffect(() => {
     fetchCategory();
   }, []);
   const {
     register,
-    handleSubmit,
+    handleSubmit,//đc gọi khi ng dùng submitform
     formState: { errors },
   } = useForm<addForm>({
     resolver: yupResolver(addSchema),
-  });
+  });//useform tạo biểu mẫu đk thông tin sp
+  //yupResolver để kiểm tra dữ liệu được nhập vào form
   const onSubmit = async (product: addForm) => {
     try {
       const response = await addProduct(product);
@@ -77,9 +80,9 @@ const Add = () => {
                 </div>
                 <input
                   {...register("images")}
-                  id="dropzone-file"
-                  type="file"
-                  className="hidden"
+                 
+                  type="text"
+                  className="rounded-lg px-20"
                 />
               </label>
               <p className="text-xs text-red-500">

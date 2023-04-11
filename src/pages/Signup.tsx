@@ -13,21 +13,22 @@ const Signup = () => {
   } = useForm<SignupForm>({
     resolver: yupResolver(signupSchema),
   });
+  //yupResolver kiểm tra dữ liệu được nhập vào form
 
   const navigate = useNavigate();
-
+// onSubmit để xử lý sự kiện submit form
   const onSubmit = async (data: SignupForm) => {
     try {
       const response = await signup(data);
       console.log(response);
-      navigate("/signin");
+      navigate("/signin");//chuyển đến trang đăng nhập sau khi đk thành công
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="h-[100vh] flex items-center justify-center">
+    <div className="h-[100vh] flex items-center justify-center bg-slate-400	">
       <form
         action=""
         className="flex items-center justify-between p-[55px] bg-white rounded-2xl shadow-xl min-w-[800px] min-h-[570px]"
@@ -86,7 +87,7 @@ const Signup = () => {
               {errors.confirmPassword && errors.confirmPassword.message}
             </p>
           </div>
-          <button className="min-w-[410px] bg-[#FF424E] text-white rounded-md py-3 mb-[24px]">
+          <button className="min-w-[410px] hover:bg-blue-600 hover:text-white text-blue-600 bg-white-600 border-dashed border-2 border-blue-500 rounded-md py-3 mb-[24px]">
             Đăng ký
           </button>
           <p className="mb-6 text-center">
@@ -95,19 +96,7 @@ const Signup = () => {
               Đăng nhập
             </Link>
           </p>
-          <div>
-            <p className="text-lg leading-4 text-[#444] text-center mb-4">
-              Hoặc đăng ký bằng
-            </p>
-            <div className="flex items-center justify-center gap-x-5">
-              <Link to="">
-                <img src="fb.png" alt="" />
-              </Link>
-              <Link to="">
-                <img src="google.png" alt="" />
-              </Link>
-            </div>
-          </div>
+     
         </div>
         <div>
           <img src="logo.png" className="w-[185px] h-[162px]" alt="" />

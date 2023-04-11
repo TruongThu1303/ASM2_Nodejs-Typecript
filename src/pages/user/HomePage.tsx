@@ -26,7 +26,7 @@ const Homepage = () => {
         <Banner></Banner>
       </div>
       <div className="mb-5">
-        <h1 className="text-2xl mb-5 font-medium leading-10 text-[#444444]">
+        <h1 className="text-2xl mb-5 font-medium leading-10 text-[#D70018]">
           SẢN PHẨM NỔI BẬT NHẤT
         </h1>
         <div className="grid grid-cols-5 gap-6">

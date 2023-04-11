@@ -20,7 +20,7 @@ const UserLayout = () => {
               alt=""
             />
           </Link>
-          <div className="w-full px-3 bg-white rounded-md">
+          <div className="w-full px-3 bg-white rounded-md py-2">
             <i className="cursor-pointer fa-solid fa-magnifying-glass"></i>
             <input
               className="flex-shrink-0 px-3 py-1 border-none rounded-md outline-none focus:ring-transparent"
@@ -28,35 +28,10 @@ const UserLayout = () => {
               placeholder="Tìm kiếm"
             />
           </div>
-          <div className="flex items-center text-white gap-x-8">
-            <div>
-              <p className="leading-[14px] text-xs max-w-[75px] whitespace-nowrap">
-                Gọi mua hàng
-              </p>
-              <p className="leading-[14px] text-xs">1800.2097</p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <i className="fal fa-map-marker-alt"></i>
-              <Link to="" className="leading-[14px] text-xs min-w-[54px]">
-                Cửa hàng gần bạn
-              </Link>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <i className="fal fa-shipping-fast"></i>
-              <Link to="" className="leading-[14px] text-xs min-w-[54px]">
-                Tra cứu đơn hàng
-              </Link>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <i className="fal fa-cart-plus"></i>
-              <Link to="/cart" className="leading-[14px] text-xs">
-                Giỏ hàng
-              </Link>
-            </div>
-          </div>
+         
           <Link to={"signin"} className="flex items-center gap-x-3">
             <i className="text-2xl text-white fa-regular fa-circle-user"></i>
-            <span className="text-white whitespace-nowrap">
+            <span className="text-white whitespace-nowrap hover:font-bold border-2 rounded-lg p-1 hover:text-[#D70018] hover:bg-[#FFFFFF]">
               {userName ? userName : "Đăng nhập"}
             </span>
           </Link>

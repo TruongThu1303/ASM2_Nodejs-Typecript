@@ -9,14 +9,14 @@ const Product = ({ data }: Props) => {
   return (
     <Link
       to={`product/${data._id}`}
-      className="flex flex-col p-5 mb-16 shadow-lg"
+      className="flex flex-col p-5 mb-16 "
     >
       <img
         alt=""
         src={data?.images}
         className="object-cover w-[200px] h-[200px] mx-auto mb-3"
       />
-      <h3 className="mb-4 text-lg font-semibold">{data.name}</h3>
+      <h3 className="mb-4 text-lg  hover:font-bold hover:text-violet-600">{data.name}</h3>
       <div className="mt-auto">
         <div className="flex mb-2 gap-x-4">
           <span className="text-[#D70018] text-lg font-medium leading-[18px]">

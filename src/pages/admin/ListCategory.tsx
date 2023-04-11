@@ -1,39 +1,36 @@
 import { Link } from "react-router-dom";
-// import SidebarMenu from "../components/SidebarMenu";
-import { deleteProducts, getAll } from "../../api/product";
+import { getAll } from "../../api/product";
 import { useEffect, useState } from "react";
 import { IProduct } from "../../interfaces/product";
-import { getCategory } from "../../api/category";
+import { deleteCategory, getCategory } from "../../api/category";
+import { ICategory } from "../../interfaces/category";
 
 const ListCategory = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [category, setCategory] = useState<IProduct[]>([]);
-  // console.log(category);
-
-  // console.log(products);
+  const [category, setCategory] = useState<ICategory[]>([]);
 
   const fetchProducts = async () => {
     try {
       const { data } = await getAll();
-      // console.log(data);
       setProducts(data);
     } catch (error) {
       console.log(error);
     }
   };
+
   const fetchCategory = async () => {
     try {
       const { data } = await getCategory();
-      // console.log(data);
       setCategory(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDeleteProduct = (id: string | number) => {
-    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm")) {
-      deleteProducts(id);
+  const handleDeleteCategory = (id: string | number) => {
+    if (confirm("Bạn có chắc chắn muốn xóa danh mục")) {
+      deleteCategory(id);
+      setCategory(category.filter((cate) => cate._id != id));
     }
   };
 
@@ -41,6 +38,7 @@ const ListCategory = () => {
     fetchProducts();
     fetchCategory();
   }, []);
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="flex flex-wrap items-center justify-between pb-4 bg-white dark:bg-gray-900">
@@ -72,9 +70,9 @@ const ListCategory = () => {
             />
           </div>
         </div>
-        <Link to={"/admin/addProduct"}>
+        <Link to={"/admin/addCategory"}>
           <button className="p-3 font-medium text-white transition-all bg-indigo-500 rounded-md shadow-lg hover:bg-indigo-600 shadow-indigo-500/50">
-            Add product
+            Add category
           </button>
         </Link>
       </div>
@@ -94,22 +92,7 @@ const ListCategory = () => {
               </div>
             </th>
             <th scope="col" className="px-6 py-3">
-              Product name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Images
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Category
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Price
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Original Price
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Brand
+              Category name
             </th>
             <th scope="col" className="px-6 py-3">
               Action
@@ -117,9 +100,9 @@ const ListCategory = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {category.map((cate) => (
             <tr
-              key={product._id}
+              key={cate._id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <td className="w-4 p-4">
@@ -138,33 +121,21 @@ const ListCategory = () => {
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {product.name}
+                {cate.name}
               </th>
               <td className="px-6 py-4">
-                <img src={product?.images} className="w-28" alt="" />
-              </td>
-              <td className="px-6 py-4">
-                {category.map((value) => {
-                  return value._id == product.categoryId ? value.name : "";
-                })}
-              </td>
-              <td className="px-6 py-4">{product.price} ₫</td>
-              <td className="px-6 py-4">{product.original_price} ₫</td>
-              <td className="px-6 py-4">{product.brand}</td>
-              <td className="px-6 py-4">
                 <Link
-                  to={`/admin/products/${product._id}`}
+                  to={`/admin/categories/${cate._id}`}
                   className="px-4 py-2 font-medium text-white rounded-md bg-cyan-500 shadow-cyan-500/50"
                 >
                   Edit
                 </Link>
-                <a
-                  href="/admin"
-                  onClick={() => handleDeleteProduct(product._id)}
+                <button
+                  onClick={() => handleDeleteCategory(cate._id)}
                   className="px-3 py-2 ml-3 font-medium text-white bg-red-500 rounded-md shadow-red-500/50"
                 >
                   Remove
-                </a>
+                </button>
               </td>
             </tr>
           ))}

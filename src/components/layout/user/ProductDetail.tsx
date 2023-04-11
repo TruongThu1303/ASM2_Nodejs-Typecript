@@ -86,7 +86,7 @@ const ProductDetail = () => {
             Mô tả ngắn: {product.description_short}
           </p>
           <div className="flex items-center mt-auto gap-x-5">
-            <button className="min-w-[233px] py-3 bg-[#FF3945] hover:bg-red-600 transition-all text-white rounded-md">
+            <button className="min-w-[233px] py-3  hover:bg-red-600 hover:text-[#FFFFFF] transition-all text-red-600 rounded-md border-double border-4 border-red-600">
               Mua ngay
             </button>
             <div className="p-3 bg-white border w-[48px] rounded-md border-[#D70018]">
@@ -94,7 +94,7 @@ const ProductDetail = () => {
                 <img src="../../cart.svg" alt="" />
               </a>
             </div>
-            <span className="text-sm leading-6 max-w-[68px]">
+            <span className="text-sm leading-6 max-w-[68px] text-violet-600">
               Thêm vào giỏ hàng
             </span>
           </div>

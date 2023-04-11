@@ -10,16 +10,16 @@ import { SigninForm, signinSchema } from "../models/user";
 const Signin = () => {
   const {
     register,
-    handleSubmit,
+    handleSubmit,//sử dụng để xử lý sự kiện khi người dùng submit form.
     formState: { errors },
   } = useForm<SigninForm>({
     resolver: yupResolver(signinSchema),
-  });
-
+  });//yupResolver để kiểm tra dữ liệu được nhập vào form
+  //useLocalStorage để lưu trữ thông tin người dùng sau khi đăng nhập
   const [user, setUser] = useLocalStorage("user", null);
 
   const navigate = useNavigate();
-
+// để xử lý sự kiện submit form
   const onSubmit = async (data: SigninForm) => {
     try {
       const {
@@ -29,15 +29,17 @@ const Signin = () => {
         accessToken,
         ...user,
       });
+      //nếu thành công
       console.log(data);
       navigate("/admin");
-    } catch (error) {
+    }//nếu ko thành công
+     catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="h-[100vh] flex items-center justify-center">
+    <div className="h-[100vh] flex items-center justify-center bg-slate-400	">
       <form
         action=""
         className="flex items-center justify-between p-[55px] bg-white rounded-2xl shadow-xl min-w-[800px] min-h-[570px]"
@@ -70,7 +72,7 @@ const Signin = () => {
               {errors.password && errors.password.message}
             </p>
           </div>
-          <button className="min-w-[410px] bg-[#FF424E] text-white rounded-md py-3 mb-[34px]">
+          <button className="min-w-[410px] hover:bg-blue-600 hover:text-white text-blue-600 bg-white-600 border-dashed border-2 border-blue-500 rounded-md py-3 mb-[24px]">
             Đăng nhập
           </button>
           <p className="mb-6 text-center">
@@ -79,19 +81,7 @@ const Signin = () => {
               Đăng ký
             </Link>
           </p>
-          <div>
-            <p className="text-lg leading-4 text-[#444] text-center mb-4">
-              Hoặc đăng nhập bằng
-            </p>
-            <div className="flex items-center justify-center gap-x-5">
-              <Link to="">
-                <img src="fb.png" alt="" />
-              </Link>
-              <Link to="">
-                <img src="google.png" alt="" />
-              </Link>
-            </div>
-          </div>
+         
         </div>
         <div>
           <img src="logo.png" className="w-[185px] h-[162px]" alt="" />

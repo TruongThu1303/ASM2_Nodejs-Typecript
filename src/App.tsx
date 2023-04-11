@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Cart from "./pages/user/Cart";
 import EditCategory from "./pages/admin/EditCategory";
 import ListCategory from "./pages/admin/ListCategory";
+import AddCategory from "./pages/admin/AddCategory";
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
           <Route index element={<Dashboard />}></Route>
           <Route path="addProduct" element={<Add />}></Route>
           <Route path="products/:id" element={<Edit />}></Route>
-          <Route path="category" element={<ListCategory />}></Route>
-          <Route path="category/:id" element={<EditCategory />}></Route>
+          <Route path="categories" element={<ListCategory />}></Route>
+          <Route path="addCategory" element={<AddCategory />}></Route>
+          <Route path="categories/:id" element={<EditCategory />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
